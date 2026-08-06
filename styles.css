@@ -175,3 +175,7 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button{fon
 .editorial{padding:60px 24px}
 .event-details{flex-direction:column;gap:12px}
 }
+
+
+/* CURSOR CANVAS */
+#cursorCanvas{position:fixed;inset:0;z-index:9999;pointer-events:none}
