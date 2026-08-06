@@ -12,22 +12,22 @@
 
     // Section reveals
     document.querySelectorAll('.section-title,.dash-label').forEach(el=>{
-      gsap.from(el,{opacity:0,y:28,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}});
+      gsap.from(el,{y:28,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}});
     });
     document.querySelectorAll('.about-text p,.exp-text p,.menu-cat,.g-img,.loc-item').forEach(el=>{
-      gsap.from(el,{opacity:0,y:24,duration:.6,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+      gsap.from(el,{y:24,duration:.6,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});
     });
 
     // Menu cards stagger
-    gsap.from('.menu-cat',{opacity:0,y:40,stagger:.1,duration:.6,ease:'power2.out',scrollTrigger:{trigger:'.menu-grid',start:'top 85%'}});
+    gsap.from('.menu-cat',{y:40,stagger:.1,duration:.6,ease:'power2.out',scrollTrigger:{trigger:'.menu-grid',start:'top 85%'}});
 
     // Experience blocks
     document.querySelectorAll('.exp-block').forEach(block=>{
-      gsap.from(block.querySelector('.exp-img'),{opacity:0,x:block.classList.contains('exp-block--flip')?40:-40,duration:.8,ease:'power2.out',scrollTrigger:{trigger:block,start:'top 80%'}});
+      gsap.from(block.querySelector('.exp-img'),{x:block.classList.contains('exp-block--flip')?40:-40,duration:.8,ease:'power2.out',scrollTrigger:{trigger:block,start:'top 80%'}});
     });
 
     // Gallery reveal
-    gsap.from('.g-img',{opacity:0,scale:.95,stagger:.06,duration:.5,ease:'power2.out',scrollTrigger:{trigger:'.gallery-grid',start:'top 85%'}});
+    gsap.from('.g-img',{scale:.95,stagger:.06,duration:.5,ease:'power2.out',scrollTrigger:{trigger:'.gallery-grid',start:'top 85%'}});
 
     // Happy Hour countdown
     const hh=document.getElementById('happyHour');
