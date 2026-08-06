@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.amber-restaurants.co.za/amberonbree/sitemap.xml
