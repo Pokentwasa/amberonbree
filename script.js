@@ -87,24 +87,10 @@
 
       let mx=0,my=0;
       const trail=[];
-      const bursts=[];
+
 
       document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;trail.push({x:mx,y:my,life:1})});
 
-      // Click burst on buttons
-      document.addEventListener('click',e=>{
-        const t=e.target.closest('.btn,.nav-cta');
-        if(t){
-          const r=t.getBoundingClientRect();
-          const cx=r.left+r.width/2;
-          const cy=r.top+r.height/2;
-          for(let i=0;i<24;i++){
-            const angle=(i/24)*Math.PI*2;
-            const speed=2+Math.random()*4;
-            bursts.push({x:cx,y:cy,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,size:1+Math.random()*2});
-          }
-        }
-      });
 
       function draw(){
         ctx.clearRect(0,0,w,h);
@@ -120,28 +106,6 @@
           ctx.fill();
         }
 
-        // Sunburst particles
-        for(let i=bursts.length-1;i>=0;i--){
-          const b=bursts[i];
-          b.x+=b.vx;b.y+=b.vy;
-          b.vx*=0.96;b.vy*=0.96;
-          b.life-=0.025;
-          if(b.life<=0){bursts.splice(i,1);continue}
-
-          // Ray line
-          ctx.beginPath();
-          ctx.moveTo(b.x,b.y);
-          ctx.lineTo(b.x-b.vx*4,b.y-b.vy*4);
-          ctx.strokeStyle='rgba(212,165,116,'+b.life*0.8+')';
-          ctx.lineWidth=b.size*b.life;
-          ctx.stroke();
-
-          // Particle dot
-          ctx.beginPath();
-          ctx.arc(b.x,b.y,b.size*b.life,0,Math.PI*2);
-          ctx.fillStyle='rgba(255,220,170,'+b.life+')';
-          ctx.fill();
-        }
 
         requestAnimationFrame(draw);
       }
