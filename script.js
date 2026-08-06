@@ -60,17 +60,92 @@
       });
     }
 
-    // Exit intent popup
+    // Exit intent popup — only after 30s on page, only on real exit
     const exitPopup=document.getElementById('exitPopup');
     const exitClose=document.getElementById('exitClose');
     let exitShown=false;
+    let exitReady=false;
+    setTimeout(()=>{exitReady=true},30000); // 30 seconds before it can trigger
     if(exitPopup){
-      document.addEventListener('mouseout',e=>{
-        if(exitShown)return;
-        if(e.clientY<5&&e.relatedTarget===null){exitPopup.classList.add('is-visible');exitShown=true}
+      document.addEventListener('mouseleave',e=>{
+        if(exitShown||!exitReady)return;
+        if(e.clientY<=0){exitPopup.classList.add('is-visible');exitShown=true}
       });
       if(exitClose)exitClose.addEventListener('click',()=>exitPopup.classList.remove('is-visible'));
       exitPopup.addEventListener('click',e=>{if(e.target===exitPopup)exitPopup.classList.remove('is-visible')});
+    }
+
+    // ==========================================
+    // CURSOR TRAIL + CLICK SUNBURST
+    // ==========================================
+    const canvas=document.getElementById('cursorCanvas');
+    if(canvas&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+      const ctx=canvas.getContext('2d');
+      let w,h;
+      function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight}
+      resize();window.addEventListener('resize',resize);
+
+      let mx=0,my=0;
+      const trail=[];
+      const bursts=[];
+
+      document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;trail.push({x:mx,y:my,life:1})});
+
+      // Click burst on buttons
+      document.addEventListener('click',e=>{
+        const t=e.target.closest('.btn,.nav-cta');
+        if(t){
+          const r=t.getBoundingClientRect();
+          const cx=r.left+r.width/2;
+          const cy=r.top+r.height/2;
+          for(let i=0;i<24;i++){
+            const angle=(i/24)*Math.PI*2;
+            const speed=2+Math.random()*4;
+            bursts.push({x:cx,y:cy,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,size:1+Math.random()*2});
+          }
+        }
+      });
+
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+
+        // Trail
+        for(let i=trail.length-1;i>=0;i--){
+          const p=trail[i];
+          p.life-=0.04;
+          if(p.life<=0){trail.splice(i,1);continue}
+          ctx.beginPath();
+          ctx.arc(p.x,p.y,2*p.life,0,Math.PI*2);
+          ctx.fillStyle='rgba(212,165,116,'+p.life*0.5+')';
+          ctx.fill();
+        }
+
+        // Sunburst particles
+        for(let i=bursts.length-1;i>=0;i--){
+          const b=bursts[i];
+          b.x+=b.vx;b.y+=b.vy;
+          b.vx*=0.96;b.vy*=0.96;
+          b.life-=0.025;
+          if(b.life<=0){bursts.splice(i,1);continue}
+
+          // Ray line
+          ctx.beginPath();
+          ctx.moveTo(b.x,b.y);
+          ctx.lineTo(b.x-b.vx*4,b.y-b.vy*4);
+          ctx.strokeStyle='rgba(212,165,116,'+b.life*0.8+')';
+          ctx.lineWidth=b.size*b.life;
+          ctx.stroke();
+
+          // Particle dot
+          ctx.beginPath();
+          ctx.arc(b.x,b.y,b.size*b.life,0,Math.PI*2);
+          ctx.fillStyle='rgba(255,220,170,'+b.life+')';
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+      draw();
     }
 
     // GA4 conversion events
