@@ -8,13 +8,13 @@
 <meta property="og:title" content="Amber on Bree — Metropolitan Luxury Dining">
 <meta property="og:description" content="Simple. Seasonal. Elevated. Fine dining, cocktails & live jazz in the heart of Cape Town.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="img/jazz-03.jpgwp-content/uploads/2023/03/March-Content-17-1024x1024.pngwp-content/uploads/2023/03/WhatsApp-Image-2023-03-17-at-14.00.45-1-1024x682.jpeg">
+<meta property="og:url" content="https://www.amber-restaurants.co.za/amberonbree/">
 <meta property="og:image" content="img/event-02.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://www.amber-restaurants.co.za/amberonbree/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Archivo+Expanded:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <!-- GA4 — replace with real ID -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -42,39 +42,56 @@
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">AMBER<span>on Bree</span></a>
+    <a href="#" class="nav-logo">
+      <svg class="nav-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+        <path d="M12 2.2c-1.6 2.8-3.9 5.9-3.9 9.2 0 3 2 5.4 3.9 5.4s3.9-2.4 3.9-5.4c0-1.5-.6-3-1.4-4.5.2 1.7-.2 2.9-1.1 3.7-.1-3.2-.7-5.8-1.4-8.4z"/>
+        <path d="M9.4 15.4c0 2.7 1.7 4.6 2.6 4.6s2.6-1.9 2.6-4.6c0-.8-.2-1.6-.6-2.4 0 1.3-.4 2.1-1.1 2.6 0-1.6-.4-2.8-.9-3.7-.7 1.1-1 2.1-1.2 2.9-.3-.5-.4-.9-.4-1.4"/>
+      </svg>
+      AMBER<span>on Bree</span>
+    </a>
     <nav class="nav-links">
-      <a href="#about">About</a>
       <a href="#menu">Menu</a>
-      <a href="#experience">Experience</a>
+      <a href="#bar">Bar</a>
+      <a href="#whats-on">What's On</a>
       <a href="gallery.html">Gallery</a>
       <a href="events.html">Events</a>
       <a href="#contact">Contact</a>
     </nav>
     <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="nav-cta">Book a Table</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span></button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <a href="#menu">Menu</a>
+  <a href="#bar">Bar</a>
+  <a href="#whats-on">What's On</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="events.html">Events</a>
+  <a href="#contact">Contact</a>
+  <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--gold btn--full">Book a Table</a>
+</div>
+
 <main>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
+  <!-- 01 HERO -->
+  <section class="hero grain" id="hero">
     <div class="hero-bg">
-      <img src="img/hero.jpg" alt="Amber on Bree interior">
+      <img src="img/hero.jpg" alt="Amber on Bree dining room, black and gold interior" fetchpriority="high">
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-eyebrow">Cape Town CBD — 16 on Bree</span>
-      <h1 class="hero-title">Amber<br><em>on Bree</em></h1>
+      <h1 class="hero-title">AMBER<em>on Bree</em></h1>
       <p class="hero-tagline">Simple. Seasonal. Elevated.</p>
-      <p class="hero-sub">A metropolitan luxury dining experience with live jazz, cocktails, and resident DJs in the heart of Cape Town.</p>
+      <p class="hero-sub">A metropolitan dining room built around long lunches, golden-hour cocktails and Thursday night jazz.</p>
       <div class="hero-actions">
         <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--gold">Book a Table</a>
         <a href="#menu" class="btn btn--outline">View Menu</a>
       </div>
     </div>
-    <div class="hero-scroll"><div class="scroll-line"></div></div>
+    <div class="hero-scroll"><span>Scroll to enter</span><div class="scroll-line"></div></div>
     <!-- Happy Hour Banner -->
     <div class="happy-hour" id="happyHour">
       <span class="hh-icon">🥂</span>
@@ -83,136 +100,270 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="about-inner">
-      <div class="about-text">
-        <span class="dash-label">Our Story</span>
-        <h2 class="section-title">Where food meets culture</h2>
-        <p>Craving a light bite or decadent feast? Our menu is for everyone. From mouthwatering breakfasts to the hearty flavours of South African cuisine, cosmopolitan dishes, Mediterranean plates, perfectly grilled steaks, and handcrafted cocktails.</p>
-        <p>End your evening with dessert while vibing to sounds from our resident DJs — or join us every Thursday for live jazz.</p>
-        <div class="about-details">
-          <div class="ad"><span class="ad-label">Kitchen</span><span>8am — 11pm Daily</span></div>
-          <div class="ad"><span class="ad-label">Happy Hour</span><span>4pm — 6pm Daily</span></div>
-          <div class="ad"><span class="ad-label">Live Jazz</span><span>Thursdays 7pm</span></div>
-        </div>
+  <!-- 02 THE AMBER EXPERIENCE — day to night -->
+  <section class="dn-intro">
+    <div class="dn-intro-inner">
+      <span class="dash-label">The Amber Experience</span>
+      <h2 class="dn-heading">One room. Five moods a day — <em style="color:var(--gold);font-style:italic">from daylight to after dark.</em></h2>
+    </div>
+  </section>
+  <section class="dn-strip" aria-label="A day at Amber, from afternoon to after dark">
+    <div class="dn-col dn-col--afternoon">
+      <img src="img/food-05.jpg" alt="Bright afternoon table by the window at Amber" loading="lazy">
+      <div class="dn-col-content">
+        <span class="dn-col-time">Afternoon</span>
+        <p class="dn-col-copy">Long lunches, open windows.</p>
       </div>
-      <div class="about-img">
-        <img src="img/venue-wide.jpg" alt="Amber on Bree dish" loading="lazy">
+    </div>
+    <div class="dn-col dn-col--golden">
+      <img src="img/event-02.jpg" alt="Golden hour on the terrace at Amber on Bree" loading="lazy">
+      <div class="dn-col-content">
+        <span class="dn-col-time">Golden Hour</span>
+        <p class="dn-col-copy">Happy hour begins at four.</p>
+      </div>
+    </div>
+    <div class="dn-col dn-col--evening">
+      <img src="img/food-04.jpg" alt="Evening service at Amber, guests and bar in full swing" loading="lazy">
+      <div class="dn-col-content">
+        <span class="dn-col-time">Evening</span>
+        <p class="dn-col-copy">The kitchen finds its rhythm.</p>
+      </div>
+    </div>
+    <div class="dn-col dn-col--afterdark">
+      <img src="img/signage.jpg" alt="A cocktail poured at the bar, late at Amber" loading="lazy">
+      <div class="dn-col-content">
+        <span class="dn-col-time">After Dark</span>
+        <p class="dn-col-copy">Jazz gives way to the DJ booth.</p>
       </div>
     </div>
   </section>
 
-  <!-- MENU PREVIEW -->
-  <section class="menu-section" id="menu">
-    <div class="menu-inner">
-      <span class="dash-label">The Menu</span>
-      <h2 class="section-title">Explore our kitchen</h2>
-      <div class="menu-grid">
-        <div class="menu-cat">
-          <div class="menu-cat-img"><img src="img/tapas.jpg" alt="Tapas" loading="lazy"></div>
-          <h3>Tapas & Starters</h3>
-          <p>Springbok Carpaccio, Chili Prawns, West Coast Mussels, Asian Pork Belly — shareable plates to set the tone.</p>
+  <!-- 03 THE KITCHEN -->
+  <section class="kitchen" id="about">
+    <div class="kitchen-inner">
+      <div class="kitchen-head">
+        <div>
+          <span class="dash-label">The Kitchen</span>
+          <h2 class="stmt kitchen-title">THE<br>KITCHEN</h2>
         </div>
-        <div class="menu-cat">
-          <div class="menu-cat-img"><img src="img/steaks.jpg" alt="Steaks & Mains" loading="lazy"></div>
-          <h3>Steaks & Mains</h3>
-          <p>Chalmar Grass Fed Sirloin, Ribeye & Marrow, Lamb Shank, Sfuba Senkomo — plus seafood, pasta, and burgers.</p>
+        <p class="kitchen-sub">Simple.<br>Seasonal.<br>Elevated.</p>
+      </div>
+      <div class="kitchen-body">
+        <div class="kitchen-img">
+          <img src="img/steaks.jpg" alt="Grilled short rib and hand-cut chips at Amber on Bree" loading="lazy">
         </div>
-        <div class="menu-cat">
-          <div class="menu-cat-img"><img src="img/cocktails.jpg" alt="Cocktails" loading="lazy"></div>
-          <h3>Cocktails & Bar</h3>
-          <p>40+ classic and signature cocktails, premium whiskies, SA wines, and our famous Amber Gin Sour.</p>
-        </div>
-        <div class="menu-cat">
-          <div class="menu-cat-img"><img src="img/lunch.jpg" alt="Lunch Club" loading="lazy"></div>
-          <h3>Amber Lunch Club</h3>
-          <p>R130 lunch special daily 11h00–16h00. Brunch, rump, hake, burgers, salads — pick any dish on the lunch menu.</p>
+        <div class="kitchen-text">
+          <p>South African tradition, cosmopolitan flair — grilled over open flame and plated without fuss. From mouthwatering breakfasts to hearty mains, Mediterranean plates and handcrafted cocktails, the kitchen runs long and the room stays warm.</p>
+          <div class="kitchen-stats">
+            <div class="k-stat"><span>Open</span><span>8am — 11pm Daily</span></div>
+            <div class="k-stat"><span>Cuisine</span><span>SA · Mediterranean · Cosmopolitan</span></div>
+            <div class="k-stat"><span>Lunch Club</span><span>R130, 11h00 — 16h00</span></div>
+          </div>
         </div>
       </div>
-      <div class="menu-cta">
+    </div>
+  </section>
+
+  <!-- 04 THE MENU -->
+  <section class="menu-ed" id="menu">
+    <div class="menu-ed-inner">
+      <div class="menu-ed-head">
+        <div>
+          <span class="dash-label">The Menu</span>
+          <h2 class="section-title" style="margin-bottom:0">Explore the kitchen</h2>
+        </div>
+      </div>
+      <div class="menu-rows">
+        <div class="menu-row">
+          <div class="menu-row-left">
+            <div class="menu-row-thumb"><img src="img/tapas.jpg" alt="Tapas at Amber on Bree" loading="lazy"></div>
+            <h3 class="menu-row-name">Tapas &amp; Starters</h3>
+          </div>
+          <p class="menu-row-desc">Springbok carpaccio, chili prawns, West Coast mussels, Asian pork belly.</p>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-left">
+            <div class="menu-row-thumb"><img src="img/steaks.jpg" alt="Fire and grill mains at Amber on Bree" loading="lazy"></div>
+            <h3 class="menu-row-name">Fire &amp; Grill</h3>
+          </div>
+          <p class="menu-row-desc">Chalmar grass-fed sirloin, ribeye &amp; marrow, lamb shank, Sfuba Senkomo.</p>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-left">
+            <div class="menu-row-thumb"><img src="img/food-03.jpg" alt="From the sea at Amber on Bree" loading="lazy"></div>
+            <h3 class="menu-row-name">From the Kitchen</h3>
+          </div>
+          <p class="menu-row-desc">Seafood, pasta and burgers, cooked the Amber way.</p>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-left">
+            <div class="menu-row-thumb"><img src="img/lunch.jpg" alt="Amber Lunch Club burger" loading="lazy"></div>
+            <h3 class="menu-row-name">Amber Lunch Club</h3>
+          </div>
+          <p class="menu-row-desc">R130 daily, 11h00–16h00. Brunch, rump, hake, burgers, salads.</p>
+        </div>
+      </div>
+      <div class="menu-ed-cta">
         <a href="menu.pdf" target="_blank" class="btn btn--gold">View Full Menu (PDF)</a>
       </div>
     </div>
   </section>
 
-  <!-- THE EXPERIENCE -->
-  <section class="experience" id="experience">
-    <div class="exp-block">
-      <div class="exp-img"><img src="img/food-02.jpg" alt="Fine dining at Amber" loading="lazy"></div>
-      <div class="exp-text">
-        <span class="dash-label">Dine</span>
-        <h2 class="section-title">Elevated classics</h2>
-        <p>Every dish tells a story — from locally sourced ingredients to the final presentation. Our chefs blend South African tradition with cosmopolitan flair, creating plates that are familiar yet unforgettable.</p>
-      </div>
+  <!-- 05 THE BAR -->
+  <section class="bar" id="bar">
+    <div class="bar-img">
+      <img src="img/cocktails.jpg" alt="Two handcrafted cocktails at Amber on Bree" loading="lazy">
     </div>
-    <div class="exp-block exp-block--flip">
-      <div class="exp-img"><img src="img/happy-hour.jpg" alt="Cocktails at Amber" loading="lazy"></div>
-      <div class="exp-text">
-        <span class="dash-label">Unwind</span>
-        <h2 class="section-title">Golden hour, every hour</h2>
-        <p>Daily happy hour from 4–6pm. Handcrafted cocktails, premium pours, and an atmosphere that shifts from afternoon calm to evening energy. The bar stays open until close.</p>
-      </div>
-    </div>
-    <div class="exp-block">
-      <div class="exp-img"><img src="img/jazz-01.jpg" alt="Live jazz at Amber" loading="lazy"></div>
-      <div class="exp-text">
-        <span class="dash-label">Live</span>
-        <h2 class="section-title">Thursday nights, live jazz</h2>
-        <p>Every Thursday at 7pm — Muneeb Herman's Quartet brings the soul. Live jazz in an intimate setting, paired with cocktails and a menu built for the occasion. Book early — these seats fill fast.</p>
-        <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--gold btn--sm">Reserve for Thursday</a>
+    <div class="bar-text">
+      <span class="dash-label">The Bar</span>
+      <h2 class="stmt bar-title">Golden hour,<br><em>every hour.</em></h2>
+      <p>Handcrafted cocktails, premium pours, and a happy hour that runs four till six, daily. Forty-plus cocktails on the list — ask for the Amber Gin Sour.</p>
+      <div class="bar-detail-strip">
+        <img src="img/content-02.png" alt="Bottle shelf at the Amber bar" loading="lazy">
+        <img src="img/food-01.jpg" alt="Cocktail on the bar ladder shelf" loading="lazy">
+        <img src="img/signage.jpg" alt="Bartender straining a cocktail" loading="lazy">
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section class="gallery" id="gallery">
-    <div class="gallery-inner">
-      <span class="dash-label">Gallery</span>
-      <h2 class="section-title">The atmosphere</h2>
+  <!-- 06 WHAT'S ON -->
+  <section class="whatson" id="whats-on">
+    <div class="whatson-inner">
+      <div class="whatson-head">
+        <span class="dash-label">What's On</span>
+        <h2 class="stmt whatson-title">WHAT'S ON</h2>
+      </div>
+      <div class="whatson-grid">
+        <div class="wo-card">
+          <div class="wo-thumb"><img src="img/happy-hour.jpg" alt="Happy hour at Amber on Bree" loading="lazy"></div>
+          <div class="wo-body">
+            <span class="wo-day">Daily</span>
+            <h3 class="wo-title">Happy Hour</h3>
+            <p class="wo-desc">Cocktails, beer &amp; house wines at happy prices.</p>
+            <span class="wo-time">4pm — 6pm</span>
+          </div>
+        </div>
+        <div class="wo-card">
+          <div class="wo-thumb"><img src="img/lunch.jpg" alt="Amber Lunch Club" loading="lazy"></div>
+          <div class="wo-body">
+            <span class="wo-day">Daily</span>
+            <h3 class="wo-title">Lunch Club</h3>
+            <p class="wo-desc">R130 fixed lunch — any dish on the menu.</p>
+            <span class="wo-time">11h00 — 16h00</span>
+          </div>
+        </div>
+        <div class="wo-card">
+          <div class="wo-thumb"><img src="img/event-01.jpg" alt="Live jazz quartet at Amber on Bree" loading="lazy"></div>
+          <div class="wo-body">
+            <span class="wo-day">Thursday</span>
+            <h3 class="wo-title">Live Jazz</h3>
+            <p class="wo-desc">Muneeb Herman's Quartet. Free entry.</p>
+            <span class="wo-time">7pm</span>
+          </div>
+        </div>
+        <div class="wo-card">
+          <div class="wo-thumb"><img src="img/jazz-02.jpg" alt="Nightlife at Amber on Bree" loading="lazy"></div>
+          <div class="wo-body">
+            <span class="wo-day">Fri &amp; Sat</span>
+            <h3 class="wo-title">Resident DJs</h3>
+            <p class="wo-desc">Deep house &amp; afro soul, till close.</p>
+            <span class="wo-time">No cover</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="gallery-grid">
-      <div class="g-img"><img src="img/food-01.jpg" alt="Amber dining" loading="lazy"></div>
-      <div class="g-img"><img src="img/happy-hour.jpg" alt="Happy hour" loading="lazy"></div>
-      <div class="g-img"><img src="img/food-02.jpg" alt="Fine dining" loading="lazy"></div>
-      <div class="g-img"><img src="img/venue-wide.jpg" alt="Venue" loading="lazy"></div>
-      <div class="g-img"><img src="img/jazz-01.jpg" alt="Jazz night" loading="lazy"></div>
-      <div class="g-img"><img src="img/event-01.jpg" alt="Events" loading="lazy"></div>
-    </div>
-    <div class="gallery-cta"><a href="gallery.html" class="btn btn--gold">View Gallery</a><a href="https://www.instagram.com/amber_on_bree/" target="_blank" class="btn btn--outline">Follow us on Instagram →</a></div>
   </section>
 
-  <!-- RESERVATION CTA -->
-  <section class="reserve-band">
-    <div class="reserve-inner">
-      <h2>Your table is waiting.</h2>
-      <p>Book online via Dineplan or WhatsApp us directly for groups and special requests.</p>
-      <div class="reserve-actions">
+  <!-- 07 LIVE JAZZ — immersive -->
+  <section class="jazz grain" id="experience">
+    <div class="jazz-bg">
+      <img src="img/event-01.jpg" alt="Muneeb Herman's Quartet performing live jazz at Amber on Bree" loading="lazy">
+    </div>
+    <div class="jazz-overlay"></div>
+    <div class="jazz-content">
+      <span class="jazz-eyebrow">Every Thursday</span>
+      <h2 class="stmt jazz-title">Live<br><em>Jazz</em></h2>
+      <div class="jazz-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="jazz-meta">
+        <span class="jazz-time">7pm</span>
+        <span class="jazz-band">Muneeb Herman's Quartet</span>
+      </div>
+      <p>The room turns from dinner into night. Smooth, soulful and unmissable — pair the set with the cocktail list and stay past last orders. Free entry, but these seats fill fast.</p>
+      <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--gold">Reserve for Thursday</a>
+    </div>
+  </section>
+
+  <!-- 08 AFTER DARK -->
+  <section class="afterdark">
+    <div class="afterdark-bg">
+      <img src="img/venue-wide.jpg" alt="Cape Town nightlife outside Amber on Bree" loading="lazy">
+    </div>
+    <div class="afterdark-overlay"></div>
+    <div class="afterdark-content">
+      <span class="afterdark-sub">Friday &amp; Saturday — Resident DJs</span>
+      <h2 class="stmt afterdark-title">AFTER<br><em>DARK</em></h2>
+      <p>Deep house and afro soul carry the room from dinner into the small hours. The bar stays open till close. No cover.</p>
+    </div>
+  </section>
+
+  <!-- 09 INSIDE AMBER — gallery teaser -->
+  <section class="inside">
+    <div class="inside-inner">
+      <div class="inside-head">
+        <div>
+          <span class="dash-label">Gallery</span>
+          <h2 class="stmt inside-title">Inside Amber</h2>
+        </div>
+        <a href="gallery.html" class="btn btn--outline">View Full Gallery →</a>
+      </div>
+      <div class="masonry">
+        <div class="m-img m-img--a"><img src="img/food-04.jpg" alt="Evening at Amber on Bree" loading="lazy"></div>
+        <div class="m-img m-img--b"><img src="img/jazz-01.jpg" alt="A guest at Amber on Bree" loading="lazy"></div>
+        <div class="m-img m-img--c"><img src="img/content-02.png" alt="Bottle wall at Amber's bar" loading="lazy"></div>
+        <div class="m-img m-img--d"><img src="img/food-03.jpg" alt="Crispy calamari at Amber on Bree" loading="lazy"></div>
+        <div class="m-img m-img--e"><img src="img/interior.jpg" alt="Espresso martini at Amber on Bree" loading="lazy"></div>
+        <div class="m-img m-img--f"><img src="img/venue-wide.jpg" alt="Street level outside Amber on Bree at night" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 BREE STREET / LOCATION -->
+  <section class="bree" id="contact">
+    <div class="bree-img">
+      <img src="img/content-01.png" alt="Amber on Bree signage, exterior at 16 on Bree" loading="lazy">
+    </div>
+    <div class="bree-info">
+      <span class="dash-label">Find Us</span>
+      <h2 class="stmt bree-title">16 Bree Street<br><em>Cape Town</em></h2>
+      <p>Corner of Bree and Prestwich, in the middle of the CBD's after-work rush — easy to find, harder to leave.</p>
+      <div class="bree-details">
+        <div class="bree-item"><h4>Address</h4><p>Shop 1 &amp; 2<br>Corner of Bree &amp; Prestwich Street<br>Cape Town CBD, 8000</p></div>
+        <div class="bree-item"><h4>Hours</h4><p>Monday — Sunday<br>08:00 — 23:00<br>Kitchen closes at 23:00</p></div>
+        <div class="bree-item"><h4>Contact</h4><p><a href="tel:+27874700816">087 470 0816</a><br><a href="mailto:amberonbree@gmail.com">amberonbree@gmail.com</a></p></div>
+        <div class="bree-item"><h4>Live Music</h4><p>Jazz Thursdays from 7pm<br>Resident DJs Fri &amp; Sat</p></div>
+      </div>
+      <div class="bree-socials">
+        <a href="http://www.facebook.com/amberonbree16" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/amber_on_bree/" target="_blank">Instagram</a>
+      </div>
+      <div class="bree-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.94!2d18.4191428!3d-33.9175163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc6709b08054bd%3A0xbc0ee11e3c1d638!2s16%20on%20Bree!5e0!3m2!1sen!2sza!4v1" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title="Map to Amber on Bree"></iframe>
+        <span class="bree-map-label">Open in Maps →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK YOUR TABLE — final CTA -->
+  <section class="book-cta grain">
+    <div class="book-cta-bg"><img src="img/hero.jpg" alt="" loading="lazy"></div>
+    <div class="book-cta-overlay"></div>
+    <div class="book-cta-inner">
+      <h2 class="stmt book-cta-title">YOUR TABLE<br>IS WAITING.</h2>
+      <div class="book-cta-rule"></div>
+      <p>16 Bree Street, Cape Town CBD · Daily 08:00 — 23:00</p>
+      <div class="book-cta-actions">
         <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--white">Book on Dineplan</a>
         <a href="https://wa.me/27874700816?text=Hi%20Amber%20on%20Bree%2C%20I'd%20like%20to%20make%20a%20reservation" target="_blank" class="btn btn--outline-white">WhatsApp Us</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- LOCATION -->
-  <section class="location" id="contact">
-    <div class="location-inner">
-      <div class="loc-info">
-        <span class="dash-label">Find Us</span>
-        <h2 class="section-title">16 on Bree</h2>
-        <div class="loc-details">
-          <div class="loc-item"><h4>Address</h4><p>Shop 1 & 2<br>Corner of Bree and Prestwich Street<br>Cape Town CBD, 8000</p></div>
-          <div class="loc-item"><h4>Hours</h4><p>Monday — Sunday<br>08:00 — 23:00<br>Kitchen closes at 23:00</p></div>
-          <div class="loc-item"><h4>Contact</h4><p><a href="tel:+27874700816">087 470 0816</a><br><a href="mailto:amberonbree@gmail.com">amberonbree@gmail.com</a></p></div>
-          <div class="loc-item"><h4>Live Music</h4><p>Jazz Thursdays from 7pm<br>Resident DJs Fri & Sat</p></div>
-        </div>
-        <div class="loc-socials">
-          <a href="http://www.facebook.com/amberonbree16" target="_blank">Facebook</a>
-          <a href="https://www.instagram.com/amber_on_bree/" target="_blank">Instagram</a>
-        </div>
-      </div>
-      <div class="loc-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.94!2d18.4191428!3d-33.9175163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc6709b08054bd%3A0xbc0ee11e3c1d638!2s16%20on%20Bree!5e0!3m2!1sen!2sza!4v1" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </section>
@@ -222,47 +373,68 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-brand"><span class="footer-logo">AMBER<em>on Bree</em></span><p>A metropolitan luxury restaurant with a relaxed lounge feel.</p></div>
-    <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#menu">Menu</a>
-      <a href="#experience">Experience</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="events.html">Events</a>
-      <a href="#contact">Contact</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">AMBER<em>on Bree</em></span>
+        <p>A metropolitan luxury restaurant with a relaxed lounge feel. 16 Bree Street, Cape Town CBD.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Explore</h5>
+          <div class="footer-links">
+            <a href="#menu">Menu</a>
+            <a href="#bar">Bar</a>
+            <a href="#whats-on">What's On</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="events.html">Events</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Visit</h5>
+          <div class="footer-links">
+            <a href="#contact">16 Bree Street</a>
+            <a href="tel:+27874700816">087 470 0816</a>
+            <a href="mailto:amberonbree@gmail.com">amberonbree@gmail.com</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Follow</h5>
+          <div class="footer-links">
+            <a href="https://www.instagram.com/amber_on_bree/" target="_blank">Instagram</a>
+            <a href="http://www.facebook.com/amberonbree16" target="_blank">Facebook</a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 Amber on Bree. All rights reserved.</p>
-      <p>16 on Bree, Cape Town CBD</p>
+      <p>Dining · Cocktails · Music — 16 on Bree, Cape Town CBD</p>
     </div>
   </div>
 </footer>
+
+<!-- SIGNATURE AMBER LIGHT -->
+<div id="amberLight" aria-hidden="true"></div>
 
 <!-- STICKY BOOK BUTTON (mobile) -->
 <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="book-float" id="bookFloat">Book a Table</a>
 
 <!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/27874700816?text=Hi%20Amber%20on%20Bree%2C%20I'd%20like%20to%20make%20a%20reservation" class="wa-float" target="_blank" aria-label="WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <!-- EXIT POPUP — IG follow, only on real exit -->
 <div class="exit-popup" id="exitPopup">
   <div class="exit-popup-inner">
-    <button class="exit-close" id="exitClose">&times;</button>
+    <button class="exit-close" id="exitClose" aria-label="Close">&times;</button>
     <h3>Don't miss out</h3>
     <p>Follow us on Instagram for daily specials, events, and behind-the-scenes.</p>
     <a href="https://www.instagram.com/amber_on_bree/" target="_blank" class="btn btn--gold btn--full">Follow @amber_on_bree</a>
   </div>
 </div>
 
-
-<!-- CURSOR TRAIL + BURST -->
-<canvas id="cursorCanvas"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-<!-- CURSOR TRAIL + BURST -->
-<canvas id="cursorCanvas"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="script.js"></script>
 </body>
