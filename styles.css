@@ -103,7 +103,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1.5px solid var
 
 /* mobile full-screen nav panel */
 .nav-mobile{position:fixed;inset:0;z-index:500;background:var(--black);display:flex;flex-direction:column;justify-content:center;padding:32px;gap:8px;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
   opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .4s var(--ease),transform .4s var(--ease),visibility 0s linear .4s}
+/* short/landscape viewports: centering + overflow can clip the top of the list
+   with no way to scroll to it, so top-align and reserve room for the fixed header instead */
+@media(max-height:600px){
+  .nav-mobile{justify-content:flex-start;padding-top:84px}
+}
 .nav-mobile.is-open{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s var(--ease),transform .4s var(--ease)}
 .nav-mobile a{font-family:var(--font-display);font-size:34px;color:var(--cream);padding:14px 4px;border-bottom:1px solid var(--border)}
 .nav-mobile a.is-active{color:var(--gold)}
@@ -444,7 +450,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1.5px solid var
   .nav-cta{display:none}
   .nav-logo{font-size:17px;gap:6px}
   .nav-mark{width:16px;height:16px}
-  .happy-hour{bottom:76px;padding:11px 20px;flex-wrap:wrap;justify-content:center;text-align:center;gap:8px 14px}
+  .happy-hour{bottom:76px;padding:11px 20px;flex-wrap:wrap;justify-content:center;text-align:center;gap:8px 14px;transform:translateY(calc(100% + 76px))}
+  .happy-hour.is-visible{transform:translateY(0)}
   .hero-content{padding:0 22px 100px}
   .hero-scroll{display:none}
   .dn-intro{padding:100px 22px 40px}
@@ -467,7 +474,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1.5px solid var
   .bree-info{padding:64px 22px}
   .bree-details{grid-template-columns:1fr}
   .book-cta{padding:120px 22px}
-  .footer{padding:64px 22px 28px}
+  .footer{padding:64px 22px 96px}
   .footer-cols{gap:36px}
   .about,.menu-section,.gallery,.exp-text,.loc-info{padding-left:22px!important;padding-right:22px!important}
   .event-block .event-text{padding:48px 22px}
