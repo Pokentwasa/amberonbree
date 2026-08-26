@@ -452,7 +452,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1.5px solid var
   .nav-mark{width:16px;height:16px}
   .happy-hour{bottom:76px;padding:11px 20px;flex-wrap:wrap;justify-content:center;text-align:center;gap:8px 14px;transform:translateY(calc(100% + 76px))}
   .happy-hour.is-visible{transform:translateY(0)}
-  .hero-content{padding:0 22px 100px}
+  /* extra bottom clearance so the happy-hour bar (up to two lines when the
+     countdown text wraps) never covers the hero-actions buttons above it */
+  .hero-content{padding:0 22px 190px}
   .hero-scroll{display:none}
   .dn-intro{padding:100px 22px 40px}
   .dn-strip{flex-direction:column;height:auto}
