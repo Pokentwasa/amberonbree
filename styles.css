@@ -483,6 +483,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1.5px solid var
    ========================================================= */
 .dn-sequence{position:relative}
 .dn-col-index{display:block;font-family:var(--font-label);font-size:11px;letter-spacing:.2em;color:var(--gold-deep);margin-bottom:10px}
+.dn-progress{display:none}
 @media(min-width:1024px){
   .dn-strip{height:100vh}
   .dn-strip:hover .dn-col{flex:none}
@@ -575,9 +576,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1.5px solid var
   .bree-img{min-height:420px}
   .whatson-grid{grid-template-columns:repeat(2,1fr)}
   .masonry{grid-template-columns:repeat(3,1fr);grid-auto-rows:110px}
-  .dn-strip{height:520px}
   .event-featured-inner,.event-block-inner{grid-template-columns:1fr}
   .event-block .event-img{min-height:320px}
+}
+
+/* dn-strip's tablet height belongs to the non-pinned (<1024px) range only —
+   kept out of the shared 1100px block above so it can't win the cascade
+   against the min-width:1024px pinned-desktop rule for 1024–1100px. */
+@media(max-width:1023px){
+  .dn-strip{height:520px}
 }
 
 @media(max-width:700px){

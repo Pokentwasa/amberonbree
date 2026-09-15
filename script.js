@@ -66,6 +66,7 @@
       initJazz();
       initAfterDark();
       initGallerySection();
+      initEditorialGrid();
       initLocation();
       initFinalCTA();
       initCursorLabel();
@@ -268,8 +269,31 @@
       });
     };
     revealUp('.section-title,.dash-label,.stmt');
-    revealUp('.ed-text-block,.ed-img,.event-details,.about-text p,.exp-text p,.g-img,.loc-item');
+    revealUp('.ed-text-block,.event-details,.about-text p,.exp-text p,.g-img,.loc-item');
     gsap.utils.toArray('.reveal-img').forEach(initRevealImage);
+  }
+
+  // Intentional repeating 3-way reveal pattern (vertical clip / scale+opacity /
+  // horizontal clip), reused by any editorial image grid.
+  function applyAlternatingReveal(elements){
+    elements.forEach(function(el, i){
+      var pattern = i % 3;
+      if(pattern === 0){
+        gsap.fromTo(el, {clipPath:'inset(100% 0% 0% 0%)'}, {clipPath:'inset(0% 0% 0% 0%)', duration:1.1, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 88%'}});
+      } else if(pattern === 1){
+        gsap.from(el, {opacity:0, scale:.92, duration:.9, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 88%'}});
+      } else {
+        gsap.fromTo(el, {clipPath:'inset(0% 100% 0% 0%)'}, {clipPath:'inset(0% 0% 0% 0%)', duration:1.1, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 88%'}});
+      }
+    });
+  }
+
+  // ==========================================
+  // GALLERY.HTML — editorial grid, same alternating pattern as the
+  // index.html masonry teaser
+  // ==========================================
+  function initEditorialGrid(){
+    applyAlternatingReveal(document.querySelectorAll('.editorial .ed-img'));
   }
 
   function initRevealImage(wrap){
@@ -454,17 +478,7 @@
   // INSIDE AMBER — masonry teaser, alternating reveal pattern
   // ==========================================
   function initGallerySection(){
-    var imgs = document.querySelectorAll('.masonry .m-img:not(.reveal-img)');
-    imgs.forEach(function(el, i){
-      var pattern = i % 3;
-      if(pattern === 0){
-        gsap.fromTo(el, {clipPath:'inset(100% 0% 0% 0%)'}, {clipPath:'inset(0% 0% 0% 0%)', duration:1.1, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 88%'}});
-      } else if(pattern === 1){
-        gsap.from(el, {opacity:0, scale:.92, duration:.9, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 88%'}});
-      } else {
-        gsap.fromTo(el, {clipPath:'inset(0% 100% 0% 0%)'}, {clipPath:'inset(0% 0% 0% 0%)', duration:1.1, ease:'power3.out', scrollTrigger:{trigger:el, start:'top 88%'}});
-      }
-    });
+    applyAlternatingReveal(document.querySelectorAll('.masonry .m-img:not(.reveal-img)'));
   }
 
   // ==========================================
