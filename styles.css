@@ -128,9 +128,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1.5px solid var
    ========================================================= */
 .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
 .hero-bg{position:absolute;inset:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:heroZoom 24s ease-in-out infinite alternate}
-@keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1.16)}}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.03)}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,9,8,.35) 0%,rgba(10,9,8,.45) 55%,rgba(10,9,8,.92) 100%)}
+.hero-scrim{position:absolute;inset:0;background:var(--black);opacity:0;pointer-events:none}
 .hero-content{position:relative;z-index:1;max-width:1480px;margin:0 auto;padding:0 48px 108px;width:100%}
 .hero-eyebrow{font-family:var(--font-label);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:28px}
 .hero-title{font-family:var(--font-display);font-weight:400;font-size:clamp(64px,13vw,220px);line-height:.86;margin-bottom:22px;letter-spacing:-.01em}
@@ -258,22 +258,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1.5px solid var
 .jazz-time{font-family:var(--font-display);font-style:italic;font-size:22px;color:var(--gold)}
 .jazz-band{font-family:var(--font-label);font-size:12px;letter-spacing:.05em;color:var(--text);text-transform:uppercase}
 .jazz-content p{font-size:16px;color:var(--text);line-height:1.8;margin-bottom:32px;max-width:480px}
-.jazz-eq{display:flex;align-items:flex-end;gap:4px;height:26px;margin-bottom:28px}
-.jazz-eq span{width:3px;background:var(--gold);border-radius:1px;animation:eq 1.8s ease-in-out infinite}
-.jazz-eq span:nth-child(1){height:40%;animation-delay:-1.4s}
-.jazz-eq span:nth-child(2){height:100%;animation-delay:-.9s}
-.jazz-eq span:nth-child(3){height:60%;animation-delay:-.2s}
-.jazz-eq span:nth-child(4){height:85%;animation-delay:-1.1s}
-.jazz-eq span:nth-child(5){height:35%;animation-delay:-.5s}
-@keyframes eq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
-@media(prefers-reduced-motion:reduce){.jazz-eq span{animation:none}}
 
 /* =========================================================
    AFTER DARK
    ========================================================= */
 .afterdark{position:relative;min-height:74vh;display:flex;align-items:center;overflow:hidden;border-top:1px solid var(--border)}
 .afterdark-bg{position:absolute;inset:0}
-.afterdark-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.6)}
+.afterdark-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.6);transform:scale(1.08)}
 .afterdark-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 50%,rgba(10,9,8,.25) 0%,rgba(10,9,8,.88) 72%)}
 .afterdark-content{position:relative;z-index:1;padding:0 48px;max-width:var(--container);margin:0 auto;width:100%;text-align:right}
 .afterdark-title{font-size:clamp(52px,8vw,120px);margin-bottom:14px}
@@ -425,6 +416,153 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:1.5px solid var
 .reserve-inner h2{font-family:var(--font-display);font-size:clamp(34px,4.5vw,54px);margin-bottom:16px;color:var(--cream)}
 .reserve-inner p{font-size:15px;color:var(--text-dim);margin-bottom:36px}
 .reserve-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* =========================================================
+   MOTION SYSTEM — global reveal language
+   Base state (no JS / reduced-motion): everything fully visible.
+   .js on <html> (set synchronously, before paint) + GSAP drive
+   the enhanced states below. No content is ever gated behind JS.
+   ========================================================= */
+
+/* line / mask reveal — large editorial headings */
+.line-mask{display:block;overflow:hidden}
+.js:not(.reduce-motion) .line-mask .line-inner{display:block;transform:translateY(100%)}
+.line-mask .line-inner{display:block}
+
+/* generic fade/stagger primitives (CSS sets the "from" state, GSAP animates to "to") */
+.js:not(.reduce-motion) .fade-up{opacity:0;transform:translateY(28px)}
+.js:not(.reduce-motion) .stagger-line{opacity:0;transform:translateY(14px)}
+
+/* above-the-fold entrance states — must be CSS-driven (zero flash), not JS-set */
+.js:not(.reduce-motion) .hero-bg img,
+.js:not(.reduce-motion) .hero-eyebrow,
+.js:not(.reduce-motion) .hero-tagline,
+.js:not(.reduce-motion) .hero-sub,
+.js:not(.reduce-motion) .hero-actions,
+.js:not(.reduce-motion) .hero-scroll{opacity:0}
+.js:not(.reduce-motion) .hero-eyebrow,
+.js:not(.reduce-motion) .hero-tagline,
+.js:not(.reduce-motion) .hero-sub,
+.js:not(.reduce-motion) .hero-actions,
+.js:not(.reduce-motion) .hero-scroll{transform:translateY(20px)}
+.js:not(.reduce-motion) .page-title,
+.js:not(.reduce-motion) .page-sub{opacity:0;transform:translateY(20px)}
+
+/* image reveal component — overflow wrapper + veil curtain + scale settle */
+.reveal-img{position:relative;overflow:hidden}
+.reveal-img-veil{position:absolute;inset:0;z-index:2;background:var(--black);transform-origin:right center;pointer-events:none}
+.js:not(.reduce-motion) .reveal-img img{transform:scale(1.08)}
+.js.reduce-motion .reveal-img-veil,.reduce-motion .reveal-img-veil{display:none}
+
+/* nav — hide on scroll down, return on scroll up */
+.nav{will-change:transform}
+.nav.is-hidden{transform:translateY(-100%)}
+
+/* nav link underline */
+.nav-links a{position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;right:100%;bottom:-4px;height:1px;background:var(--gold);transition:right .35s var(--ease)}
+.nav-links a:hover::after,.nav-links a.is-active::after{right:0}
+
+/* magnetic buttons + fill sweep */
+.btn{position:relative;isolation:isolate}
+.btn--gold::before,.btn--white::before{content:'';position:absolute;inset:0;z-index:-1;transform:scaleX(0);transform-origin:left center;transition:transform .45s var(--ease)}
+.btn--gold::before{background:var(--gold-soft)}
+.btn--white::before{background:var(--cream)}
+.btn--gold:hover::before,.btn--gold:focus-visible::before{transform:scaleX(1)}
+.btn--white:hover::before,.btn--white:focus-visible::before{transform:scaleX(1)}
+.btn.magnetic{will-change:transform}
+
+/* ambient day → night layers — fixed, decorative, behind content, above black bg */
+.mood-layer{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0}
+.mood-amber{background:radial-gradient(ellipse at 50% 20%,rgba(224,138,60,.16) 0%,rgba(224,138,60,0) 60%);mix-blend-mode:screen}
+.mood-dark{background:radial-gradient(ellipse at 50% 30%,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 100%);mix-blend-mode:multiply}
+@media(max-width:700px){.mood-layer{display:none}}
+
+/* =========================================================
+   FIVE MOODS — pinned desktop sequence
+   ========================================================= */
+.dn-sequence{position:relative}
+.dn-col-index{display:block;font-family:var(--font-label);font-size:11px;letter-spacing:.2em;color:var(--gold-deep);margin-bottom:10px}
+@media(min-width:1024px){
+  .dn-strip{height:100vh}
+  .dn-strip:hover .dn-col{flex:none}
+  .dn-col{position:absolute;inset:0;display:grid;grid-template-columns:1.35fr 1fr;flex:none!important;opacity:0}
+  .dn-col:first-child{opacity:1}
+  .dn-col img{position:static;width:100%;height:100%}
+  .dn-col::after{display:none}
+  .dn-col-content{position:static;padding:0 6vw;display:flex;flex-direction:column;justify-content:center;background:var(--black)}
+  .dn-col--afternoon .dn-col-content{background:#171310}
+  .dn-col--golden .dn-col-content{background:#1c150d}
+  .dn-col--evening .dn-col-content{background:#140f0a}
+  .dn-col--afterdark .dn-col-content{background:#0a0807}
+  .dn-col-time{font-size:14px;margin-bottom:20px}
+  .dn-col-copy{font-family:var(--font-display);font-style:italic;font-size:clamp(26px,2.6vw,40px);line-height:1.3;opacity:1;max-width:9em}
+  .dn-progress{position:absolute;right:44px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:16px;z-index:3}
+  .dn-progress-current{font-family:var(--font-display);font-size:18px;color:var(--gold)}
+  .dn-progress-total{font-family:var(--font-label);font-size:10px;color:var(--text-dim);letter-spacing:.1em}
+  .dn-progress-line{width:1px;height:96px;background:var(--border-strong);position:relative;overflow:hidden}
+  .dn-progress-fill{position:absolute;top:0;left:0;width:100%;height:0%;background:var(--gold)}
+}
+
+/* =========================================================
+   JAZZ — soundwave line (replaces bouncing equaliser)
+   ========================================================= */
+.jazz-wave{display:block;margin-bottom:28px;width:220px;height:28px}
+.jazz-wave path{fill:none;stroke:var(--gold);stroke-width:1.2;stroke-linecap:round}
+.jazz-spotlight{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 30% 50%,rgba(224,138,60,.18) 0%,rgba(224,138,60,0) 45%);opacity:0;transition:opacity .8s ease}
+.jazz.is-active .jazz-spotlight{opacity:1}
+
+/* =========================================================
+   BAR — cursor-reactive light (desktop only)
+   ========================================================= */
+.bar-light{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(224,138,60,.30) 0%,rgba(224,138,60,0) 40%);opacity:0;transition:opacity .5s ease;mix-blend-mode:screen}
+.bar-light.is-active{opacity:1}
+@media(max-width:1023px){.bar-light{display:none}}
+
+/* wo-card micro interactions */
+.wo-title{transition:transform .35s var(--ease)}
+.wo-card:hover .wo-title{transform:translateY(-3px)}
+.wo-arrow{display:inline-block;margin-left:6px;transition:transform .35s var(--ease)}
+.wo-card:hover .wo-arrow{transform:translateX(4px)}
+
+/* =========================================================
+   CURSOR LABEL — gallery "View", desktop pointer-fine only
+   ========================================================= */
+.cursor-label{position:fixed;top:0;left:0;z-index:600;pointer-events:none;display:flex;align-items:center;justify-content:center;width:74px;height:74px;border-radius:50%;background:var(--gold);color:var(--black);font-family:var(--font-label);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:0;transform:translate(-50%,-50%) scale(.8);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.cursor-label.is-active{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@media(hover:none),(pointer:coarse){.cursor-label{display:none}}
+
+/* =========================================================
+   LIGHTBOX (gallery.html + index.html teaser)
+   ========================================================= */
+.lightbox{position:fixed;inset:0;z-index:700;display:none;align-items:center;justify-content:center;background:rgba(10,9,8,.92);backdrop-filter:blur(10px);padding:40px}
+.lightbox.is-visible{display:flex}
+.lightbox-figure{position:relative;max-width:min(1100px,92vw);max-height:88vh;opacity:0;transform:scale(.96);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.lightbox.is-visible .lightbox-figure{opacity:1;transform:scale(1)}
+.lightbox-figure img{max-width:100%;max-height:88vh;width:auto;height:auto;display:block;border-radius:var(--radius);margin:0 auto}
+.lightbox-caption{margin-top:14px;text-align:center;font-family:var(--font-label);font-size:11px;letter-spacing:.08em;color:var(--text-dim)}
+.lightbox-close,.lightbox-prev,.lightbox-next{position:fixed;background:rgba(245,239,228,.08);border:1px solid var(--border);color:var(--cream);width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .25s,border-color .25s}
+.lightbox-close:hover,.lightbox-prev:hover,.lightbox-next:hover{background:rgba(201,151,74,.16);border-color:var(--gold)}
+.lightbox-close{top:28px;right:28px}
+.lightbox-prev{left:28px;top:50%;transform:translateY(-50%)}
+.lightbox-next{right:28px;top:50%;transform:translateY(-50%)}
+@media(max-width:700px){
+  .lightbox-prev,.lightbox-next{width:40px;height:40px}
+  .lightbox-close{top:16px;right:16px}
+  .lightbox-prev{left:10px}
+  .lightbox-next{right:10px}
+}
+.gallery-trigger{cursor:pointer}
+
+/* =========================================================
+   REDUCED MOTION — belt & braces on top of JS gating
+   ========================================================= */
+@media(prefers-reduced-motion:reduce){
+  #amberLight,.mood-layer,.bar-light,.cursor-label,.jazz-spotlight,.dn-progress{display:none!important}
+  .reveal-img img{transform:none!important}
+  .dn-col{position:static!important;opacity:1!important}
+  .dn-strip{height:auto!important}
+}
 
 /* =========================================================
    RESPONSIVE

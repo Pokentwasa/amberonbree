@@ -36,6 +36,13 @@
   "menu":"img/food-01.jpg"
 }
 </script>
+<script>
+(function(){
+  var d=document.documentElement;
+  d.classList.add('js');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reduce-motion');
+})();
+</script>
 </head>
 <body>
 
@@ -57,10 +64,14 @@
       <a href="events.html">Events</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="nav-cta">Book a Table</a>
+    <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="nav-cta magnetic">Book a Table</a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
+
+<!-- AMBIENT DAY→NIGHT LAYERS -->
+<div class="mood-layer mood-amber" id="moodAmber" aria-hidden="true"></div>
+<div class="mood-layer mood-dark" id="moodDark" aria-hidden="true"></div>
 
 <!-- MOBILE NAV -->
 <div class="nav-mobile" id="navMobile">
@@ -81,13 +92,14 @@
       <img src="img/hero.jpg" alt="Amber on Bree dining room, black and gold interior" fetchpriority="high">
     </div>
     <div class="hero-overlay"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
     <div class="hero-content">
       <span class="hero-eyebrow">Cape Town CBD — 16 on Bree</span>
-      <h1 class="hero-title">AMBER<em>on Bree</em></h1>
+      <h1 class="hero-title">AMBER<br><em>on Bree</em></h1>
       <p class="hero-tagline">Simple. Seasonal. Elevated.</p>
       <p class="hero-sub">A metropolitan dining room built around long lunches, golden-hour cocktails and Thursday night jazz.</p>
       <div class="hero-actions">
-        <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--gold">Book a Table</a>
+        <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--gold magnetic">Book a Table</a>
         <a href="#menu" class="btn btn--outline">View Menu</a>
       </div>
     </div>
@@ -107,10 +119,11 @@
       <h2 class="dn-heading">One room. Five moods a day — <em style="color:var(--gold);font-style:italic">from daylight to after dark.</em></h2>
     </div>
   </section>
-  <section class="dn-strip" aria-label="A day at Amber, from afternoon to after dark">
+  <section class="dn-strip" id="fiveMoods" aria-label="A day at Amber, from afternoon to after dark">
     <div class="dn-col dn-col--afternoon">
       <img src="img/food-05.jpg" alt="Bright afternoon table by the window at Amber" loading="lazy">
       <div class="dn-col-content">
+        <span class="dn-col-index">01</span>
         <span class="dn-col-time">Afternoon</span>
         <p class="dn-col-copy">Long lunches, open windows.</p>
       </div>
@@ -118,6 +131,7 @@
     <div class="dn-col dn-col--golden">
       <img src="img/event-02.jpg" alt="Golden hour on the terrace at Amber on Bree" loading="lazy">
       <div class="dn-col-content">
+        <span class="dn-col-index">02</span>
         <span class="dn-col-time">Golden Hour</span>
         <p class="dn-col-copy">Happy hour begins at four.</p>
       </div>
@@ -125,6 +139,7 @@
     <div class="dn-col dn-col--evening">
       <img src="img/food-04.jpg" alt="Evening service at Amber, guests and bar in full swing" loading="lazy">
       <div class="dn-col-content">
+        <span class="dn-col-index">03</span>
         <span class="dn-col-time">Evening</span>
         <p class="dn-col-copy">The kitchen finds its rhythm.</p>
       </div>
@@ -132,9 +147,15 @@
     <div class="dn-col dn-col--afterdark">
       <img src="img/signage.jpg" alt="A cocktail poured at the bar, late at Amber" loading="lazy">
       <div class="dn-col-content">
+        <span class="dn-col-index">04</span>
         <span class="dn-col-time">After Dark</span>
         <p class="dn-col-copy">Jazz gives way to the DJ booth.</p>
       </div>
+    </div>
+    <div class="dn-progress" aria-hidden="true">
+      <span class="dn-progress-current">01</span>
+      <div class="dn-progress-line"><div class="dn-progress-fill"></div></div>
+      <span class="dn-progress-total">04</span>
     </div>
   </section>
 
@@ -149,7 +170,7 @@
         <p class="kitchen-sub">Simple.<br>Seasonal.<br>Elevated.</p>
       </div>
       <div class="kitchen-body">
-        <div class="kitchen-img">
+        <div class="kitchen-img reveal-img">
           <img src="img/steaks.jpg" alt="Grilled short rib and hand-cut chips at Amber on Bree" loading="lazy">
         </div>
         <div class="kitchen-text">
@@ -211,8 +232,9 @@
 
   <!-- 05 THE BAR -->
   <section class="bar" id="bar">
-    <div class="bar-img">
+    <div class="bar-img reveal-img">
       <img src="img/cocktails.jpg" alt="Two handcrafted cocktails at Amber on Bree" loading="lazy">
+      <div class="bar-light" id="barLight" aria-hidden="true"></div>
     </div>
     <div class="bar-text">
       <span class="dash-label">The Bar</span>
@@ -240,7 +262,7 @@
             <span class="wo-day">Daily</span>
             <h3 class="wo-title">Happy Hour</h3>
             <p class="wo-desc">Cocktails, beer &amp; house wines at happy prices.</p>
-            <span class="wo-time">4pm — 6pm</span>
+            <span class="wo-time">4pm — 6pm <span class="wo-arrow" aria-hidden="true">→</span></span>
           </div>
         </div>
         <div class="wo-card">
@@ -249,7 +271,7 @@
             <span class="wo-day">Daily</span>
             <h3 class="wo-title">Lunch Club</h3>
             <p class="wo-desc">R130 fixed lunch — any dish on the menu.</p>
-            <span class="wo-time">11h00 — 16h00</span>
+            <span class="wo-time">11h00 — 16h00 <span class="wo-arrow" aria-hidden="true">→</span></span>
           </div>
         </div>
         <div class="wo-card">
@@ -258,7 +280,7 @@
             <span class="wo-day">Thursday</span>
             <h3 class="wo-title">Live Jazz</h3>
             <p class="wo-desc">Muneeb Herman's Quartet. Free entry.</p>
-            <span class="wo-time">7pm</span>
+            <span class="wo-time">7pm <span class="wo-arrow" aria-hidden="true">→</span></span>
           </div>
         </div>
         <div class="wo-card">
@@ -267,7 +289,7 @@
             <span class="wo-day">Fri &amp; Sat</span>
             <h3 class="wo-title">Resident DJs</h3>
             <p class="wo-desc">Deep house &amp; afro soul, till close.</p>
-            <span class="wo-time">No cover</span>
+            <span class="wo-time">No cover <span class="wo-arrow" aria-hidden="true">→</span></span>
           </div>
         </div>
       </div>
@@ -280,16 +302,19 @@
       <img src="img/event-01.jpg" alt="Muneeb Herman's Quartet performing live jazz at Amber on Bree" loading="lazy">
     </div>
     <div class="jazz-overlay"></div>
+    <div class="jazz-spotlight" aria-hidden="true"></div>
     <div class="jazz-content">
       <span class="jazz-eyebrow">Every Thursday</span>
       <h2 class="stmt jazz-title">Live<br><em>Jazz</em></h2>
-      <div class="jazz-eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <svg class="jazz-wave" viewBox="0 0 220 28" aria-hidden="true">
+        <path d="M2 14 C 18 2, 30 26, 46 14 S 74 2, 90 14 S 118 26, 134 14 S 162 2, 178 14 S 202 26, 218 14"/>
+      </svg>
       <div class="jazz-meta">
         <span class="jazz-time">7pm</span>
         <span class="jazz-band">Muneeb Herman's Quartet</span>
       </div>
       <p>The room turns from dinner into night. Smooth, soulful and unmissable — pair the set with the cocktail list and stay past last orders. Free entry, but these seats fill fast.</p>
-      <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--gold">Reserve for Thursday</a>
+      <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--gold magnetic">Reserve for Thursday</a>
     </div>
   </section>
 
@@ -317,19 +342,19 @@
         <a href="gallery.html" class="btn btn--outline">View Full Gallery →</a>
       </div>
       <div class="masonry">
-        <div class="m-img m-img--a"><img src="img/food-04.jpg" alt="Evening at Amber on Bree" loading="lazy"></div>
-        <div class="m-img m-img--b"><img src="img/jazz-01.jpg" alt="A guest at Amber on Bree" loading="lazy"></div>
-        <div class="m-img m-img--c"><img src="img/content-02.png" alt="Bottle wall at Amber's bar" loading="lazy"></div>
-        <div class="m-img m-img--d"><img src="img/food-03.jpg" alt="Crispy calamari at Amber on Bree" loading="lazy"></div>
-        <div class="m-img m-img--e"><img src="img/interior.jpg" alt="Espresso martini at Amber on Bree" loading="lazy"></div>
-        <div class="m-img m-img--f"><img src="img/venue-wide.jpg" alt="Street level outside Amber on Bree at night" loading="lazy"></div>
+        <div class="m-img m-img--a reveal-img gallery-trigger"><img src="img/food-04.jpg" alt="Evening at Amber on Bree" loading="lazy"></div>
+        <div class="m-img m-img--b gallery-trigger"><img src="img/jazz-01.jpg" alt="A guest at Amber on Bree" loading="lazy"></div>
+        <div class="m-img m-img--c gallery-trigger"><img src="img/content-02.png" alt="Bottle wall at Amber's bar" loading="lazy"></div>
+        <div class="m-img m-img--d gallery-trigger"><img src="img/food-03.jpg" alt="Crispy calamari at Amber on Bree" loading="lazy"></div>
+        <div class="m-img m-img--e gallery-trigger"><img src="img/interior.jpg" alt="Espresso martini at Amber on Bree" loading="lazy"></div>
+        <div class="m-img m-img--f reveal-img gallery-trigger"><img src="img/venue-wide.jpg" alt="Street level outside Amber on Bree at night" loading="lazy"></div>
       </div>
     </div>
   </section>
 
   <!-- 10 BREE STREET / LOCATION -->
   <section class="bree" id="contact">
-    <div class="bree-img">
+    <div class="bree-img reveal-img">
       <img src="img/content-01.png" alt="Amber on Bree signage, exterior at 16 on Bree" loading="lazy">
     </div>
     <div class="bree-info">
@@ -362,7 +387,7 @@
       <div class="book-cta-rule"></div>
       <p>16 Bree Street, Cape Town CBD · Daily 08:00 — 23:00</p>
       <div class="book-cta-actions">
-        <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--white">Book on Dineplan</a>
+        <a href="https://account.dineplan.com/widgetframe/FbyZxJYT?source=GBP" target="_blank" class="btn btn--white magnetic">Book on Dineplan</a>
         <a href="https://wa.me/27874700816?text=Hi%20Amber%20on%20Bree%2C%20I'd%20like%20to%20make%20a%20reservation" target="_blank" class="btn btn--outline-white">WhatsApp Us</a>
       </div>
     </div>
@@ -434,8 +459,20 @@
   </div>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous image">&larr;</button>
+  <figure class="lightbox-figure">
+    <img id="lightboxImg" src="" alt="">
+    <figcaption class="lightbox-caption" id="lightboxCaption"></figcaption>
+  </figure>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Next image">&rarr;</button>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
