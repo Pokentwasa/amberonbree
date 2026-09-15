@@ -93,8 +93,9 @@
   function initLenis(){
     if(reduceMotion || !window.Lenis) return;
     var lenis = new Lenis({
-      duration: 1.15,
-      easing: function(t){ return 1 - Math.pow(1 - t, 4); },
+      duration: 1.2,
+      easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      wheelMultiplier: 1,
       smoothWheel: true,
       touchMultiplier: 1.1,
       autoRaf: false
